@@ -10,7 +10,7 @@ NATIVE_LINKS = {
     "rdr3": "https://raw.githubusercontent.com/alloc8or/rdr3-nativedb-data/master/natives.json",
     "fivem": "https://runtime.fivem.net/doc/natives_cfx.json"
 }
-NATIVES = []
+NATIVES = {}
 
 
 class GrandTheftAuto(Cog):
@@ -35,7 +35,7 @@ class GrandTheftAuto(Cog):
                                 "hash": n_hash,
                                 **n_data
                             }
-                            NATIVES.append(native)
+                            NATIVES[n_hash] = native
             except ClientResponseError as e:
                 LOGGER.error(f"Can't request {url}: Code {e.status}")
             except BaseException:
