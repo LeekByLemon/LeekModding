@@ -26,7 +26,7 @@ class GrandTheftAuto(Cog):
             try:
                 async with await self.bot.get(url) as resp:
                     resp.raise_for_status()
-                    json: dict[str, dict[str, dict[str, str]]] = await resp.json()
+                    json: dict[str, dict[str, dict[str, str]]] = await resp.json(content_type=None)
 
                     for namespace, natives in json.items():
                         for n_hash, n_data in natives.items():
