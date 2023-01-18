@@ -1,1 +1,1 @@
-
+from .gta import GrandTheftAuto
