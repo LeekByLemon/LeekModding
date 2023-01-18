@@ -37,6 +37,6 @@ class GrandTheftAuto(Cog):
                             }
                             NATIVES[n_hash] = native
             except ClientResponseError as e:
-                LOGGER.error(f"Can't request {url}: Code {e.status}")
+                LOGGER.exception(f"Can't request {url}: Code {e.status}")
             except BaseException:
                 LOGGER.exception(f"Unable to get {game} natives from {url}")
