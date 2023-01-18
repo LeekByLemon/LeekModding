@@ -40,3 +40,5 @@ class GrandTheftAuto(Cog):
                 LOGGER.exception(f"Can't request {url}: Code {e.status}")
             except BaseException:
                 LOGGER.exception(f"Unable to get {game} natives from {url}")
+
+        LOGGER.info("Finished fetching the natives")
