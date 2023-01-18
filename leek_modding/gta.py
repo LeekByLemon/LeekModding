@@ -32,6 +32,7 @@ class GrandTheftAuto(Cog):
                 async with await self.bot.get(url) as resp:
                     resp.raise_for_status()
                     json: dict[str, dict[str, dict[str, str]]] = await resp.json(content_type=None)
+                    ready = []
 
                     for namespace, natives in json.items():
                         for n_hash, n_data in natives.items():
@@ -46,7 +47,9 @@ class GrandTheftAuto(Cog):
                             if n_hash in NATIVES:
                                 LOGGER.warning(f"Found Duplicated Native: {n_hash}/{name}")
 
-                            NATIVES[n_hash] = native
+                            ready.append(native)
+
+                    NATIVES[game] = ready
             except ClientResponseError as e:
                 LOGGER.exception(f"Can't request {url}: Code {e.status}")
             except BaseException:
