@@ -30,11 +30,16 @@ class GrandTheftAuto(Cog):
 
                     for namespace, natives in json.items():
                         for n_hash, n_data in natives.items():
+                            name = n_data["name"]
                             native = {
                                 "namespace": namespace,
                                 "hash": n_hash,
                                 **n_data
                             }
+
+                            if n_hash in NATIVES:
+                                LOGGER.warning(f"Found Duplicated Native: {n_hash}/{name}")
+
                             NATIVES[n_hash] = native
             except ClientResponseError as e:
                 LOGGER.exception(f"Can't request {url}: Code {e.status}")
