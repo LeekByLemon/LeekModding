@@ -1,4 +1,5 @@
 import logging
+import string
 
 from aiohttp import ClientResponseError
 from discord import Cog
@@ -11,6 +12,10 @@ NATIVE_LINKS = {
     "fivem": "https://runtime.fivem.net/doc/natives_cfx.json"
 }
 NATIVES = {}
+
+
+def format_lua_name(name: str):
+    return string.capwords(name.lower().replace("0x", "N_0x").replace("_", " ")).replace(" ", "")
 
 
 class GrandTheftAuto(Cog):
@@ -34,6 +39,7 @@ class GrandTheftAuto(Cog):
                             native = {
                                 "namespace": namespace,
                                 "hash": n_hash,
+                                "lua": format_lua_name(name),
                                 **n_data
                             }
 
