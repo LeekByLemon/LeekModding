@@ -3,7 +3,7 @@ import string
 
 from aiohttp import ClientResponseError
 from discord import Cog, ApplicationContext, slash_command, Option, AutocompleteContext, Embed
-from leek import LeekBot, get_localizations
+from leek import LeekBot, get_localizations, get_default
 
 LOGGER = logging.getLogger("leek_modding")
 NATIVE_LINKS = {
@@ -107,7 +107,8 @@ class GrandTheftAuto(Cog):
         LOGGER.info("Finished fetching the natives")
 
     @slash_command(name_localizations=get_localizations("MODDING_COMMAND_NATIVE_NAME"),
-                   description_localizations=get_localizations("MODDING_COMMAND_NATIVE_DESC"))
+                   description=get_default("MODDING_COMMAND_NATIVE_DESC"),
+                   description_localizations=get_localizations("MODDING_COMMAND_NATIVE_DESC"),)
     async def native(self, ctx: ApplicationContext, name: Option(str, "The name to search", autocomplete=get_natives),
                      game: Option(str, "The game for this native", default="gtav", autocomplete=get_games)):
         found = find_native(name, game)
