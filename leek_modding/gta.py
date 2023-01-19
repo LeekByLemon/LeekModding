@@ -12,6 +12,7 @@ NATIVE_LINKS = {
     "fivem": "https://runtime.fivem.net/doc/natives_cfx.json"
 }
 NATIVES = {}
+CACHE = []
 
 
 def format_lua_name(name: str):
@@ -73,6 +74,8 @@ class GrandTheftAuto(Cog):
                     json: dict[str, dict[str, dict[str, str]]] = await resp.json(content_type=None)
                     ready = []
 
+                    CACHE.clear()
+
                     for namespace, natives in json.items():
                         for n_hash, n_data in natives.items():
                             name = n_data["name"]
@@ -83,12 +86,19 @@ class GrandTheftAuto(Cog):
                                 **n_data
                             }
 
+                            if name not in CACHE:
+                                CACHE.append(name)
+                            if n_hash not in CACHE:
+                                CACHE.append(n_hash)
+
                             if n_hash in NATIVES:
                                 LOGGER.warning(f"Found Duplicated Native: {n_hash}/{name}")
 
                             ready.append(native)
 
                     NATIVES[game] = ready
+
+                CACHE.sort(reverse=True)
             except ClientResponseError as e:
                 LOGGER.exception(f"Can't request {url}: Code {e.status}")
             except BaseException:
