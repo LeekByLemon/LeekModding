@@ -124,4 +124,13 @@ class GrandTheftAuto(Cog):
                                                                                            found["lua"],
                                                                                            params)
 
+        backup = embed.description
+        comment = found.get("comment", None) or found.get("description")
+
+        if comment:
+            embed.description += "\n**Description**: {0}".format(comment)
+
+            if len(embed) > 2000:
+                embed.description = backup
+
         await ctx.respond(embed=embed)
