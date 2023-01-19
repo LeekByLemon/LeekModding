@@ -50,8 +50,8 @@ def find_native(name: str, game: str):
 
 
 async def get_natives(ctx: AutocompleteContext):
-    natives = NATIVES["gtav"]
-    return list(x["name"] for x in natives)
+    query = ctx.value.upper()
+    return list(x for x in CACHE if query in x)
 
 
 async def get_games(ctx: AutocompleteContext):
