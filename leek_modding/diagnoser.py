@@ -65,7 +65,8 @@ class Diagnoser(Cog):
                 else:
                     continue
 
-                problems.append(message)
+                if message not in problems:
+                    problems.append(message)
 
         if not problems:
             await ctx.respond("Couldn't detect any issues with the log file.")
