@@ -21,6 +21,7 @@ LEVELS = {
     "WARNING": "🟡",
     "ERROR": "🔴"
 }
+FATAL_EXCEPTION = "Caught fatal unhandled exception:"
 
 
 class Diagnoser(Cog):
@@ -57,7 +58,7 @@ class Diagnoser(Cog):
 
             level, details = match.groups()
 
-            if level not in LEVELS:
+            if level not in LEVELS or details == FATAL_EXCEPTION:
                 continue
 
             emoji = LEVELS[level]
