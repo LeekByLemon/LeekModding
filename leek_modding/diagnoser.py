@@ -11,8 +11,8 @@ RE_DEPENDENCY = re.compile("Failed to instantiate script ([A-z0-9_.]*) because c
                            "System.IO.FileNotFoundException: .* '([A-Za-z0-9.]*), Version=([0-9.]*),")
 MATCHES = {
     "Failed to load config: System.IO.FileNotFoundException": "The configuration file for SHVDN does not exists",
-    RE_INSTANCE: "{0} Mod {1} was not instantiated by SHVDN",
-    RE_DEPENDENCY: "{0} {1} requires {2} version {3} or higher but is not installed"
+    RE_INSTANCE: "Mod {0} was not instantiated by SHVDN",
+    RE_DEPENDENCY: "{0} requires {1} version {2} or higher but is not installed"
 }
 
 
@@ -58,7 +58,7 @@ class Diagnoser(Cog):
                     if matches is None:
                         continue
 
-                    message = text.format(emoji, *matches.groups())
+                    message = f"{emoji} " + text.format(*matches.groups())
                 elif isinstance(match, str):
                     if not details.startswith(match):
                         continue
