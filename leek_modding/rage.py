@@ -58,9 +58,9 @@ async def get_games(ctx: AutocompleteContext):
     return list(NATIVES.keys())
 
 
-class GrandTheftAuto(Cog):
+class Rage(Cog):
     """
-    Grand Theft Auto related commands.
+    Tools for Rockstar Advanced Game Engine modders.
     """
     def __init__(self, bot: LeekBot):
         self.bot: LeekBot = bot
