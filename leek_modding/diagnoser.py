@@ -58,7 +58,7 @@ class Diagnoser(Cog):
 
                     message = text.format(emoji, *matches.groups())
                 elif isinstance(match, str):
-                    if match != details:
+                    if not details.startswith(match):
                         continue
 
                     message = match
