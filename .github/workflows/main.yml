@@ -30,4 +30,5 @@ jobs:
       - run: python -m build
       - uses: actions/upload-artifact@v3.1.2
         with:
+          name: ${{ github.event.repository.name }}
           path: dist/*
