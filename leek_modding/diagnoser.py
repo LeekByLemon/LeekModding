@@ -9,6 +9,8 @@ RE_INSTANCE = re.compile("A script tried to use a custom script instance of type
                          "instantiated by ScriptHookVDotNet")
 RE_DEPENDENCY = re.compile("Failed to instantiate script ([A-Za-z0-9_.]*) because constructor threw an exception: "
                            "System.IO.FileNotFoundException: .* '([A-Za-z0-9.]*), Version=([0-9.]*),")
+RE_ASSEMBLY = re.compile("Failed to load assembly ([A-Za-z0-9_.]*).dll: System.IO.FileNotFoundException: "
+                         "Could not load file or assembly '([A-Za-z0-9.]*), Version=([0-9.]*),")
 RE_CONSTRUCTOR = re.compile("Failed to instantiate script ([A-Za-z0-9_.]*) because no public default "
                             "constructor was found")
 RE_CRASHED = re.compile("The exception was thrown while executing the script ([A-Za-z0-9_.]*)")
@@ -16,6 +18,7 @@ MATCHES = {
     "Failed to load config: System.IO.FileNotFoundException": "The configuration file for SHVDN does not exists",
     RE_INSTANCE: "Mod {0} was not instantiated by SHVDN",
     RE_DEPENDENCY: "{0} requires {1} version {2} or higher but is not installed",
+    RE_ASSEMBLY: "{0} requires {1} version {2} or higher but is not installed",
     RE_CONSTRUCTOR: "Mod {0} is missing a constructor or the Attribute NoDefaultInstance",
     RE_CRASHED: "{0} crashed, contact the developer with this log file"
 }
