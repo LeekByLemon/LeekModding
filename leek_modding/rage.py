@@ -110,7 +110,8 @@ class Rage(Cog):
                    description=get_default("MODDING_COMMAND_NATIVE_DESC"),
                    description_localizations=get_localizations("MODDING_COMMAND_NATIVE_DESC"),)
     async def native(self, ctx: ApplicationContext, name: Option(str, "The name to search", autocomplete=get_natives),
-                     game: Option(str, "The game for this native", default="gtav", autocomplete=get_games)):
+                     game: Option(str, "The game for this native", default="gtav",  # noqa: F821
+                                  autocomplete=get_games)):
         found = find_native(name, game)
 
         if found is None:
