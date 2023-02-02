@@ -28,3 +28,6 @@ jobs:
           python-version: 3.11
       - run: pip install -r requirements.txt
       - run: python -m build
+      - uses: actions/upload-artifact@v3.1.2
+        with:
+          path: dist/*
