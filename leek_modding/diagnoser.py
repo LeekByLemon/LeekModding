@@ -17,6 +17,10 @@ MATCHES = {
     RE_DEPENDENCY: "{0} requires {1} version {2} or higher but is not installed",
     RE_CONSTRUCTOR: "Mod {0} is missing a constructor or the Attribute NoDefaultInstance"
 }
+LEVELS = {
+    "WARNING": "🟡",
+    "ERROR": "🔴"
+}
 
 
 class Diagnoser(Cog):
@@ -52,7 +56,12 @@ class Diagnoser(Cog):
                 continue
 
             level, details = match.groups()
-            emoji = "🔴" if level == "ERROR" else "🟡"
+
+            if level not in LEVELS:
+                continue
+
+            emoji = LEVELS[level]
+            matched = False
 
             for match, text in MATCHES.items():
                 if isinstance(match, re.Pattern):
