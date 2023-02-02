@@ -83,6 +83,12 @@ class Diagnoser(Cog):
                 if message not in problems:
                     problems.append(message)
 
+                matched = True
+                break
+
+            if not matched:
+                problems.append(f"{emoji} Unknown ({details})")
+
         if not problems:
             await ctx.respond("Couldn't detect any issues with the log file.")
         else:
