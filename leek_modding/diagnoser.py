@@ -6,7 +6,7 @@ from leek import LeekBot, get_default
 
 RE_SHVDN = re.compile("\[[0-9]{2}:[0-9]{2}:[0-9]{2}] \[(WARNING|ERROR)] (.*)")
 RE_INSTANCE = re.compile("A script tried to use a custom script instance of type ([A-Za-z0-9.]*) that was not "
-                         "instantiated by ScriptHookVDotNet.")
+                         "instantiated by ScriptHookVDotNet")
 RE_DEPENDENCY = re.compile("Failed to instantiate script ([A-z0-9_.]*) because constructor threw an exception: "
                            "System.IO.FileNotFoundException: .* '([A-Za-z0-9.]*), Version=([0-9.]*),")
 MATCHES = {
