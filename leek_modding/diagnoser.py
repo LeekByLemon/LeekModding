@@ -61,7 +61,7 @@ class Diagnoser(Cog):
                     if not details.startswith(match):
                         continue
 
-                    message = match
+                    message = f"{emoji} {text}"
                 else:
                     continue
 
