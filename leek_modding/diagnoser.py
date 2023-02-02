@@ -5,11 +5,13 @@ from leek import LeekBot, get_default
 
 
 RE_SHVDN = re.compile("\[[0-9]{2}:[0-9]{2}:[0-9]{2}] \[(WARNING|ERROR)] (.*)")
+RE_INSTANCE = re.compile("A script tried to use a custom script instance of type ([A-Za-z0-9.]*) that was not "
+                         "instantiated by ScriptHookVDotNet.")
 RE_MISSING = re.compile("Failed to instantiate script ([A-z0-9_.]*) because constructor threw an exception: "
                         "System.IO.FileNotFoundException: .* '([A-Za-z0-9.]*), Version=([0-9.]*),")
 MATCHES = {
-    "A script tried to use a custom script instance of type ": "A mod is starting scripts incorrectly.",
     "Failed to load config: System.IO.FileNotFoundException": "The configuration file for SHVDN does not exists.",
+    RE_INSTANCE: "{0} Mod {1} was not instantiated by SHVDN",
     RE_MISSING: "{0} {1} requires {2} version {3} or higher but is not installed"
 }
 
