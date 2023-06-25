@@ -36,7 +36,7 @@ setup(
         "Topic :: Communications :: Chat",
     ],
     install_requires=[
-        "leekbot>=0.0.1,<1.0.0"
+        "leekbot"
     ],
     python_requires=">=3.8",
     package_data={
